@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    image:
+      postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - 5432
+
+  app:
+    build: .
+    volumes:
+      - .:/owm_api
+    restart: 'always'
+    command:
+      sh -c 'alembic stamp head &&
+             alembic revision --autogenerate -m "First Migration" &&
+             alembic upgrade head &&
+             uvicorn app.main:app --reload --host 0.0.0.0 --port 80'
+    env_file:
+      - ./.env
+    ports:
+      - 80
+    depends_on:
+      - db
+
+  scrapy:
+    build: .
+    volumes:
+      - .:/owm_api
+    command:
+      sh -c 'cd owm_scrapy &&
+             python owm_scrapy/scheduler.py'
+    depends_on:
+      - db
+      - app
+
+volumes:
+  postgres_data:
+
