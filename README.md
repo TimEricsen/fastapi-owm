@@ -12,7 +12,7 @@ Used technologies (Использованные технологии):
 - uvicorn
 
 How to run localy (Как локально запустить):
-1. Go to the folder in which to deploy the project (Зайдите в папку, в которой развернуть проект).
+1. Go to the folder where you want to deploy the project (Зайдите в папку, в которой вы хотите развернуть проект).
 2. Run the command (Запустите команду):
 
 ```git init```
