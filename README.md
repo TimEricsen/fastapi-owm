@@ -31,3 +31,22 @@ How to run localy (Как локально запустить):
 
 After the steps taken, the container will be created and available for use.
 После проделанных шагов, контейнер будет создан и доступен для использования.
+
+## Available endpoints (Доступные эндпоинты):
+
+- ```/weather/{city}```
+
+city - name of the city. Adding a city to the database if it is not there. Добавление города в БД, если его там нет.
+
+- ```/last_weather```
+
+Returns a list of existing cities with the latest recorded temperature. You can specify an optional {search} parameter that will search for a partial match of city names. Возвращает список существующих городов с последней записанной температурой. Можно указать опциональный параметр search по которому будет произведён поиск на частичное совпадение названий городов. 
+
+- ```/city_stats```
+
+We get for the given city (passing the city as a query parameter) all the data for the specified period, as well as the average values ​​for this period. Получаем по заданному городу (передаём город в качестве query параметра) все данные за указанный период, а также средние значения за этот период.
+
+
+
+
+
